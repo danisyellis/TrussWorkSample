@@ -1,0 +1,23 @@
+{
+  "name": "trussworksample",
+  "version": "1.0.0",
+  "description": "A coding challenge for employment at Truss",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danisyellis/TrussWorkSample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danisyellis/TrussWorkSample/issues"
+  },
+  "homepage": "https://github.com/danisyellis/TrussWorkSample#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  }
+}
