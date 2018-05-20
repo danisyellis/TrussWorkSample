@@ -4,7 +4,7 @@
   "description": "A coding challenge for employment at Truss",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests.js"
+    "test": "mocha tests.js --watch parseCSV.js"
   },
   "repository": {
     "type": "git",
