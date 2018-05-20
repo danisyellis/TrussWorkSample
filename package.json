@@ -18,6 +18,7 @@
   "homepage": "https://github.com/danisyellis/TrussWorkSample#readme",
   "dependencies": {
     "chai": "^4.1.2",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "parse-csv": "^0.2.0"
   }
 }
