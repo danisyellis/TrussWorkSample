@@ -4,21 +4,11 @@ let encoding = 'utf-8';
 let csvData = "";
 let moment = require('moment');
 
-//TODO:
-//tests
-//Timestamp column
-  //should be formatted in ISO-8601 format
-  //converted from pacific to US/Eastern
-//All ZIP codes should be formatted as 5 digits.
-  //If there are less than 5 digits, assume 0 as the prefix
-//All name columns should be converted to uppercase
-//convert `FooDuration` and `BarDuration` to floating point seconds format
-//replace the value of TotalDuration withFooDuration + BarDuration
+//ToDos:
 //Notes column: If there are invalid UTF-8 characters, replace them w/ the unicode replacement character
 //check if characters are unicode invalid. If so, replacement character
   //if that breaks the input, drop that row and send a message to stderr
   //use moment('It is 2012-05-25', 'YYYY-MM-DD', true).isValid(); // false for date validation
-//send it out through stdout
 
   process.stdin.setEncoding(encoding);
   process.stdin.on('readable', () => {
@@ -28,7 +18,6 @@ let moment = require('moment');
     }
   })
   process.stdin.on('end', () => {
-    console.log(csvData);
     var datagrid = parser.parse(csvData).data;
     // write the header to stdout
     datagrid[0].forEach((element) => {
@@ -42,6 +31,7 @@ let moment = require('moment');
     //normalize and send to stdout the rest of the csv
     for(let i=1; i<datagrid.length; i++) {
       currentRow = datagrid[i];
+      checkForInvalidUnicode(currentRow);
       formatTimestamp(currentRow);
       formatZipcode(currentRow);
       formatNames(currentRow);
@@ -83,6 +73,20 @@ let moment = require('moment');
     row[4] = moment.duration(row[4]).asSeconds().toString();
     row[5] = moment.duration(row[5]).asSeconds().toString();
     row[6] = row[4] + row[5];
+  }
+
+  function checkForInvalidUnicode(row) {
+    /*row.forEach((element) => {
+      let arrayToCheck = element.split("");
+      for (let i=0; i<arrayToCheck.length; i++) {
+        if (element.charCodeAt(i) === "NAN") {
+          console.log("Nanananananananananananananannanananananananannaa Batman!");
+        }
+      }
+      //if unicode is not valid
+        //replace with unicode replacement character
+    })
+    */
   }
 
 module.exports = {
