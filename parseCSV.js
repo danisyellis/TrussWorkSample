@@ -45,16 +45,16 @@ let moment = require('moment');
       formatTimestamp(currentRow);
       formatZipcode(currentRow);
       formatNames(currentRow);
+      formatDurations(currentRow);
       for(let j=0; j<datagrid[i].length; j++) {
         if(datagrid[i][j].includes(",")) {
-          process.stdout.write('"' + datagrid[i][j] + '",')
-  //TODO: get rid of trailing , with another write (or create the string first)
+          process.stdout.write('"' + datagrid[i][j] + '"')
         } else {
-          process.stdout.write(datagrid[i][j] + ',')
+          process.stdout.write(datagrid[i][j])
+          if(j !== datagrid[i].length-1) {process.stdout.write(',')}
         }
       }
       process.stdout.write("\n");
-      //console.log(datagrid)
     }
   });
 
@@ -76,11 +76,18 @@ let moment = require('moment');
   }
 
   function formatNames(row) {
-    row[3] = row[3].toUpperCase()
+    row[3] = row[3].toUpperCase();
+  }
+
+  function formatDurations(row) {
+    row[4] = moment.duration(row[4]).asSeconds().toString();
+    row[5] = moment.duration(row[5]).asSeconds().toString();
+    row[6] = row[4] + row[5];
   }
 
 module.exports = {
   formatTimestamp,
   formatZipcode,
-  formatNames
+  formatNames,
+  formatDurations
 }
