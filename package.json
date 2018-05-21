@@ -19,6 +19,7 @@
   "dependencies": {
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
+    "moment": "^2.22.1",
     "parse-csv": "^0.2.0"
   }
 }
